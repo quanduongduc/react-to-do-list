@@ -1,7 +1,7 @@
 # Getting Started with Create React App
 
 ## How To Use :
-Install nodeJS : [https://nodejs.org](https://nodejs.org).\
+Install nodeJS : [https://nodejs.org](https://nodejs.org)
 
 Install dependencies using npm :
 ### `npm install`
