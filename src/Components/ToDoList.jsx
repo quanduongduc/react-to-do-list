@@ -3,22 +3,18 @@ import Work from "./Work";
 import WorkInput from "./WorkInput";
 
 function ToDoList() {
-    let [works, setWork] = useState([]);
-    const workStorage = window.localStorage;
+    const [works, setWork] = useState([]);
 
     // Get works from local storage when component mounted firstly
-
     useEffect(() => {
-        if (workStorage.getItem("works")) {
-            setWork(JSON.parse(workStorage.getItem("works")))
+        if (localStorage.getItem("works")) {
+            setWork(JSON.parse(localStorage.getItem("works")))
         }
-        // eslint-disable-next-line
     }, [])
 
     // Save list work to local storage when works change
     useEffect(() => {
-        workStorage.setItem("works", JSON.stringify(works));
-        // eslint-disable-next-line
+        localStorage.setItem("works", JSON.stringify(works));
     }, [works])
 
     function handleRemoveWork(removeId) {
@@ -32,14 +28,17 @@ function ToDoList() {
     function handleSubmit(event) {
         event.preventDefault();
         setWork((prev) => {
-            const newId = prev[prev.length - 1] === undefined ? 1 : prev[prev.length - 1].id + 1;
+            const deadline = new Date(event.target.deadline.value).toLocaleString();
+            const title = event.target.title.value;
+            const description = event.target.description.value;
+            const id = prev[prev.length - 1] === undefined ? 1 : prev[prev.length - 1].id + 1;
             return [
                 ...prev,
                 {
-                    id: newId,
-                    tilte: event.target.name.value,
-                    description: event.target.description.value,
-                    deadline: event.target.deadline.value
+                    id,
+                    title,
+                    description,
+                    deadline
                 },
             ]
         })
