@@ -28,6 +28,9 @@ function WorkInput(props) {
             ]
         })
         titleTag.current.focus();
+        dispatch(setTitle(''))
+        dispatch(setDeadline(''))
+        dispatch(setDesc(''))
     }
 
     return (
