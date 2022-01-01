@@ -25,25 +25,6 @@ function ToDoList() {
         })
     }
 
-    function handleSubmit(event) {
-        event.preventDefault();
-        setWork((prev) => {
-            const deadline = new Date(event.target.deadline.value).toLocaleString();
-            const title = event.target.title.value;
-            const description = event.target.description.value;
-            const id = prev[prev.length - 1] === undefined ? 1 : prev[prev.length - 1].id + 1;
-            return [
-                ...prev,
-                {
-                    id,
-                    title,
-                    description,
-                    deadline
-                },
-            ]
-        })
-    }
-
     function sortWork() {
         setWork((prev) => {
             const sorted = [...prev];
@@ -56,7 +37,7 @@ function ToDoList() {
 
     return (
         <React.Fragment>
-            <WorkInput handleSubmit={handleSubmit} />
+            <WorkInput setWork={setWork} />
             <div className="list-works">
                 <button className="btn-sort" onClick={sortWork}>Sort By Time</button>
                 {works.map((work, index) => {

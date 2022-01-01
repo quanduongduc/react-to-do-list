@@ -6,7 +6,7 @@ function Work(props) {
     return (
         <div className="work">
             <div className="work-group">
-                <p className="work-name">{work.tilte}</p>
+                <p className="work-name">{work.title}</p>
                 <p className="work-desc">{work.description}</p>
             </div>
             <p className="work-deadline">{work.deadline}</p>
